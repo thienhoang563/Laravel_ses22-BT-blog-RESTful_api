@@ -11,6 +11,8 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
 </head>
 <body>
+<a href="{{ route('change-language', ['en']) }}" class="btn btn-primary">EN</a>
+<a href="{{route('change-language', ['vi'])}}" class="btn btn-danger">VI</a>
 <div class="container">
     @yield('content')
 </div>

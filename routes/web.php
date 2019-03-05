@@ -11,15 +11,21 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+Route::group(['middleware' => 'locale'], function () {
+    Route::get('change-language/{lang}', 'Controller@changeLanguage')->name('change-language');
+
+    Route::get('/', function () {
+        return view('welcome');
+    });
+    Route::group(['prefix' => 'post'], function () {
+        Route::get('/', 'PostController@index')->name('post.index');
+        Route::get('/create', 'PostController@create')->name('post.create');
+        Route::post('/create', 'PostController@store')->name('post.store');
+        Route::get('/{id}/edit', 'PostController@edit')->name('post.edit');
+        Route::post('/{id}/edit', 'PostController@update')->name('post.update');
+        Route::get('/{id}/destroy', 'PostController@destroy')->name('post.destroy');
+        Route::get('/{id}/show', 'PostController@show')->name('post.show');
+    });
+
 });
-Route::group(['prefix'=>'post'],function (){
-    Route::get ('/','PostController@index')->name('post.index');
-    Route::get('/create','PostController@create')->name('post.create');
-    Route::post('/create','PostController@store')->name('post.store');
-    Route::get('/{id}/edit','PostController@edit')->name('post.edit');
-    Route::post('/{id}/edit','PostController@update')->name('post.update');
-    Route::get('/{id}/destroy','PostController@destroy')->name('post.destroy');
-    Route::get('/{id}/show','PostController@show')->name('post.show');
-});
+

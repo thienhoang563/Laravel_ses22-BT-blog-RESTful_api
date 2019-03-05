@@ -1,13 +1,20 @@
-<!doctype html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-{{$post->content}}
-</body>
-</html>
+@extends('post.home')
+@section('title','show')
+@section('content')
+<div class="col-12">
+    <h1>Post Details</h1>
+    <div class="card text-left" style="width: 100%">
+        <div class="card-body">
+            <h3>Title:</h3>
+        <h3 class="card-title"> {{ $post->title }}</h3>
+            <label>Content:</label>
+        <p class="card-text">{{ $post->content }}</p>
+        </div>
+        <div class="form-group">
+            <label>{{__('messages.image')}}</label>
+            <img class="form-control-file" src="{{asset('storage/'.$post->image)}}" style="width: 200px; height: 200px"/>
+            <a href="{{ route('post.index') }}" class="btn btn-primary">{{__('messages.back')}}</a>
+        </div>
+    </div>
+</div>
+@endsection
